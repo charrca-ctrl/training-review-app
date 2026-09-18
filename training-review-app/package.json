@@ -1,0 +1,15 @@
+{
+  "name": "training-review-app",
+  "version": "1.0.0",
+  "description": "Web app for reviewing and commenting on SCORM training modules. Zero npm dependencies -- runs on plain Node.js (>=18).",
+  "main": "server/index.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server/index.js"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {}
+}

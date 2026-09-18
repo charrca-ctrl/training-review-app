@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Training Review</title>
+<link rel="icon" href="data:," />
+<link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+<div id="app" class="app hidden">
+
+  <header class="topbar">
+    <div class="topbar-brand">
+      <span class="brand-mark">TR</span>
+      <span class="brand-name">Training Review</span>
+    </div>
+    <div class="topbar-user" id="topbarUser"></div>
+  </header>
+
+  <main class="layout">
+
+    <aside class="pane pane-modules">
+      <div class="pane-header">
+        <h2>Modules</h2>
+        <button id="uploadBtn" class="btn btn-primary btn-sm" type="button">+ Upload</button>
+      </div>
+
+      <form id="uploadForm" class="upload-form hidden">
+        <input type="file" id="uploadFile" accept=".zip" required />
+        <input type="text" id="uploadTitle" placeholder="Title (optional -- read from manifest by default)" />
+        <div class="upload-actions">
+          <button type="submit" class="btn btn-primary btn-sm">Upload</button>
+          <button type="button" id="uploadCancel" class="btn btn-ghost btn-sm">Cancel</button>
+        </div>
+        <div id="uploadStatus" class="upload-status"></div>
+      </form>
+
+      <ul id="moduleList" class="module-list"></ul>
+      <div id="moduleListEmpty" class="empty-hint hidden">No modules yet. Upload a SCORM zip to get started.</div>
+    </aside>
+
+    <section class="pane pane-viewer">
+      <div class="viewer-toolbar">
+        <div id="viewerTitle" class="viewer-title">Select a module from the left to review it</div>
+        <select id="itemSelect" class="item-select hidden"></select>
+        <div id="locationBadge" class="location-badge hidden">Current section: <span id="locationValue">--</span></div>
+      </div>
+      <div class="viewer-frame-wrap">
+        <div id="viewerPlaceholder" class="viewer-placeholder">
+          <p>Upload a SCORM module and select it to preview and review it here.</p>
+        </div>
+        <iframe id="scormFrame" class="scorm-frame hidden" title="SCORM module preview"></iframe>
+      </div>
+    </section>
+
+    <aside class="pane pane-comments">
+      <div class="pane-header">
+        <h2>Comments</h2>
+        <label class="filter-toggle">
+          <input type="checkbox" id="filterUnresolved" />
+          Unresolved only
+        </label>
+      </div>
+
+      <form id="commentForm" class="comment-form hidden">
+        <div class="comment-form-section">
+          <label for="commentSection">Section</label>
+          <input type="text" id="commentSection" placeholder="General" />
+        </div>
+        <textarea id="commentBody" placeholder="Add a comment about this section..." required></textarea>
+        <div class="comment-form-actions">
+          <button type="submit" class="btn btn-primary btn-sm">Post comment</button>
+        </div>
+      </form>
+
+      <div id="commentsEmpty" class="empty-hint">Select a module to see and add comments.</div>
+      <ul id="commentList" class="comment-list"></ul>
+    </aside>
+
+  </main>
+</div>
+
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="brand-mark brand-mark-lg">TR</div>
+    <h1>Training Review</h1>
+    <p>Sign in with your company Google account to review and comment on SCORM training modules.</p>
+    <a id="googleLoginBtn" class="btn btn-primary btn-lg" href="/auth/google">Sign in with Google</a>
+    <div id="devLoginBox" class="dev-login-box hidden">
+      <p class="dev-login-hint">Google OAuth isn't configured on this server yet. Use a dev sign-in to try the app locally:</p>
+      <form id="devLoginForm" class="dev-login-form">
+        <input type="email" id="devLoginEmail" placeholder="you@example.com" required />
+        <input type="text" id="devLoginName" placeholder="Your name" />
+        <button type="submit" class="btn btn-secondary btn-sm">Dev sign in</button>
+      </form>
+    </div>
+    <div id="loginError" class="login-error hidden"></div>
+  </div>
+</div>
+
+<script src="/scorm-api.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
